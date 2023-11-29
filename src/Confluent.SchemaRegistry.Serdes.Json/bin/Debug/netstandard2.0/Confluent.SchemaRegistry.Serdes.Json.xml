@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Confluent.SchemaRegistry.Serdes.Json</name>
+    </assembly>
+    <members>
+        <member name="F:Confluent.SchemaRegistry.Serdes.Constants.MagicByte">
+            <summary>
+                Magic byte that identifies a message with Confluent Platform framing.
+            </summary>
+        </member>
+        <member name="T:Confluent.SchemaRegistry.Serdes.JsonDeserializer`1">
+             <summary>
+                 (async) JSON deserializer.
+             </summary>
+             <remarks>
+                 Serialization format:
+                   byte 0:           A magic byte that identifies this as a message with
+                                     Confluent Platform framing.
+                   bytes 1-4:        Unique global id of the JSON schema associated with
+                                     the data (as registered in Confluent Schema Registry),
+                                     big endian.
+                   following bytes:  The JSON data (utf8)
+            
+                 Internally, uses Newtonsoft.Json for deserialization. Currently,
+                 no explicit validation of the data is done against the
+                 schema stored in Schema Registry.
+            
+                 Note: Off-the-shelf libraries do not yet exist to enable
+                 integration of System.Text.Json and JSON Schema, so this
+                 is not yet supported by the deserializer.
+             </remarks>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonDeserializer`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}},NJsonSchema.Generation.JsonSchemaGeneratorSettings)">
+            <summary>
+                Initialize a new JsonDeserializer instance.
+            </summary>
+            <param name="config">
+                Deserializer configuration properties (refer to
+                <see cref="T:Confluent.SchemaRegistry.Serdes.JsonDeserializerConfig" />).
+            </param>
+            <param name="jsonSchemaGeneratorSettings">
+                JSON schema generator settings.
+            </param>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonDeserializer`1.DeserializeAsync(System.ReadOnlyMemory{System.Byte},System.Boolean,Confluent.Kafka.SerializationContext)">
+            <summary>
+                Deserialize an object of type <typeparamref name="T"/>
+                from a byte array.
+            </summary>
+            <param name="data">
+                The raw byte data to deserialize.
+            </param>
+            <param name="isNull">
+                True if this is a null value.
+            </param>
+            <param name="context">
+                Context relevant to the deserialize operation.
+            </param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> that completes
+                with the deserialized value.
+            </returns>
+        </member>
+        <member name="T:Confluent.SchemaRegistry.Serdes.JsonDeserializerConfig">
+            <summary>
+                <see cref="T:Confluent.SchemaRegistry.Serdes.JsonDeserializer`1" />
+                configuration properties.
+            </summary>
+        </member>
+        <member name="T:Confluent.SchemaRegistry.Serdes.JsonSerializer`1">
+             <summary>
+                 JSON Serializer.
+             </summary>
+             <remarks>
+                 Serialization format:
+                   byte 0:           A magic byte that identifies this as a message with
+                                     Confluent Platform framing.
+                   bytes 1-4:        Unique global id of the JSON schema associated with
+                                     the data (as registered in Confluent Schema Registry),
+                                     big endian.
+                   following bytes:  The JSON data (utf8)
+            
+                 Internally, the serializer uses Newtonsoft.Json for
+                 serialization and NJsonSchema for schema creation and
+                 validation. You can use any property annotations recognised
+                 by these libraries.
+            
+                 Note: Off-the-shelf libraries do not yet exist to enable
+                 integration of System.Text.Json and JSON Schema, so this
+                 is not yet supported by the serializer.
+             </remarks>
+        </member>
+        <member name="F:Confluent.SchemaRegistry.Serdes.JsonSerializer`1.schemaId">
+            <remarks>
+                A given schema is uniquely identified by a schema id, even when
+                registered against multiple subjects.
+            </remarks>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonSerializer`1.#ctor(Confluent.SchemaRegistry.ISchemaRegistryClient,Confluent.SchemaRegistry.Serdes.JsonSerializerConfig,NJsonSchema.Generation.JsonSchemaGeneratorSettings)">
+            <summary>
+                Initialize a new instance of the JsonSerializer class.
+            </summary>
+            <param name="jsonSchemaGeneratorSettings">
+                JSON schema generator settings.
+            </param>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonSerializer`1.SerializeAsync(`0,Confluent.Kafka.SerializationContext)">
+            <summary>
+                Serialize an instance of type <typeparamref name="T"/> to a UTF8 encoded JSON 
+                represenation. The serialized data is preceeded by:
+                  1. A "magic byte" (1 byte) that identifies this as a message with
+                     Confluent Platform framing.
+                  2. The id of the schema as registered in Confluent's Schema Registry
+                     (4 bytes, network byte order).
+                This call may block or throw on first use for a particular topic during
+                schema registration / verification.
+            </summary>
+            <param name="value">
+                The value to serialize.
+            </param>
+            <param name="context">
+                Context relevant to the serialize operation.
+            </param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task" /> that completes with 
+                <paramref name="value" /> serialized as a byte array.
+            </returns>
+        </member>
+        <member name="T:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig">
+            <summary>
+                <see cref="T:Confluent.SchemaRegistry.Serdes.JsonSerializer`1" />
+                configuration properties.
+            </summary>
+        </member>
+        <member name="T:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.PropertyNames">
+            <summary>
+                Configuration property names specific to 
+                <see cref="T:Confluent.SchemaRegistry.Serdes.JsonSerializer`1" />.
+            </summary>
+        </member>
+        <member name="F:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.PropertyNames.BufferBytes">
+             <summary>
+                 Specifies the initial size (in bytes) of the buffer used for JSON message
+                 serialization. Use a value high enough to avoid resizing the buffer, but
+                 small enough to avoid excessive memory use. Inspect the size of the byte
+                 array returned by the Serialize method to estimate an appropriate value.
+                 Note: each call to serialize creates a new buffer.
+            
+                 default: 1024
+             </summary>
+        </member>
+        <member name="F:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.PropertyNames.AutoRegisterSchemas">
+             <summary>
+                 Specifies whether or not the JSON serializer should attempt to auto-register
+                 unrecognized schemas with Confluent Schema Registry.
+            
+                 default: true
+             </summary>
+        </member>
+        <member name="F:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.PropertyNames.SubjectNameStrategy">
+            <summary>
+                The subject name strategy to use for schema registration / lookup.
+                Possible values: <see cref="T:Confluent.SchemaRegistry.SubjectNameStrategy" />
+            </summary>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.#ctor">
+            <summary>
+                Initialize a new <see cref="T:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig" />.
+            </summary>
+        </member>
+        <member name="M:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+                Initialize a new <see cref="T:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig" /> from the provided
+                key/value pair collection.
+            </summary>
+        </member>
+        <member name="P:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.BufferBytes">
+            <summary>
+                Specifies the initial size (in bytes) of the buffer used for Protobuf message
+                serialization. Use a value high enough to avoid resizing the buffer, but
+                small enough to avoid excessive memory use. Inspect the size of the byte
+                array returned by the Serialize method to estimate an appropriate value.
+                Note: each call to serialize creates a new buffer.
+            
+                default: 1024
+            </summary>
+        </member>
+        <member name="P:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.AutoRegisterSchemas">
+             <summary>
+                 Specifies whether or not the Protobuf serializer should attempt to auto-register
+                 unrecognized schemas with Confluent Schema Registry.
+            
+                 default: true
+             </summary>
+        </member>
+        <member name="P:Confluent.SchemaRegistry.Serdes.JsonSerializerConfig.SubjectNameStrategy">
+            <summary>
+                Subject name strategy.
+                
+                default: SubjectNameStrategy.Topic
+            </summary>
+        </member>
+    </members>
+</doc>

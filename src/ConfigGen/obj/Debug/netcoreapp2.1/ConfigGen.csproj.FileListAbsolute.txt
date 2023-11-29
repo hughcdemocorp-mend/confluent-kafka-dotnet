@@ -1,0 +1,11 @@
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\bin\Debug\netcoreapp2.1\ConfigGen.deps.json
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\bin\Debug\netcoreapp2.1\ConfigGen.runtimeconfig.json
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\bin\Debug\netcoreapp2.1\ConfigGen.runtimeconfig.dev.json
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\bin\Debug\netcoreapp2.1\ConfigGen.dll
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\bin\Debug\netcoreapp2.1\ConfigGen.pdb
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.AssemblyInfoInputs.cache
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.AssemblyInfo.cs
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.csproj.CoreCompileInputs.cache
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.dll
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.pdb
+C:\Users\HughCushing\confluent-kafka-dotnet\src\ConfigGen\obj\Debug\netcoreapp2.1\ConfigGen.genruntimeconfig.cache

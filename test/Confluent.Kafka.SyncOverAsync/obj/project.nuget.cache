@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "sEOuF67TQE7xcWBJlSjZzztlfV0yIDxOxGCc4KhL6239i6qnRPOy9gXXXQ7Mh/Q/Kg9KlHcieoZrMB7Q6DYHSA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HughCushing\\confluent-kafka-dotnet\\test\\Confluent.Kafka.SyncOverAsync\\Confluent.Kafka.SyncOverAsync.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HughCushing\\.nuget\\packages\\librdkafka.redist\\1.5.3\\librdkafka.redist.1.5.3.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\HughCushing\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
